@@ -5,10 +5,15 @@
   --foreground: #ca20bc;
 }
 
-@theme inline {
-  --color-background: var(--background);
+@theme {
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-typography-primary: #25262B;
+  --color-typography-secondary: rgba(37, 38, 43, 0.67);
+  --color-background-primary: #FEF1F0;
+  --color-background-secondary: #e9e3e3;
+  --color-background-therdiary: #FEF9FF;
+  --color-background-fourthiary: #D9D9D9;
+  --font-sans: var(--font-open-sans);
   --font-mono: var(--font-geist-mono);
 }
 
