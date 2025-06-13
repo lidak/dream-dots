@@ -1,22 +1,25 @@
+import { Link } from "@/components/Link";
 import { PageLayout } from "@/components/PageLayout";
+import { Title } from "@/components/Title";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <PageLayout>
-      <div className="grid grid-rows-[1fr_20px] items-start justify-items-top min-h-screen p-8 pb-2 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <div className="grid grid-rows-[1fr_20px] items-start justify-items-top min-h-screen p-8 pb-2 gap-16 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[32px] items-center">
-          <h1 className="p-10" style={{fontSize: 30}}>Thanks for stopping by!!!</h1>
-          <Image
-            src="/logo.png"
-            alt="nata logo"
-            width={180}
-            height={38}
-            priority
-          />
-
-          <div className="flex gap-4 items-center flex-col sm:flex-row">
-            <h2>The website is under construction. No kidding! The logo is almost ready and one small story will be published soon! So stay tuned.</h2>
+          <Title size={1}>Wellcome to Creative Sprout.</Title>
+          <div className="flex flex-row">
+            <Image
+              src="/new-herro-message.svg"
+              alt="nata logo"
+              width="400"
+              height="400"
+              className="mr-5"
+            />
+            <div>
+              <Link href="/cart">Explore unique creations</Link><span>made with love and creativity.</span>
+            </div>
           </div>
         </main>
       </div>
