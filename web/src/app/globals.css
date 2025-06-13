@@ -2,19 +2,20 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #ca20bc;
+  --foreground: #25262B;
 }
 
 @theme {
   --color-foreground: var(--foreground);
   --color-typography-primary: #25262B;
   --color-typography-secondary: rgba(37, 38, 43, 0.67);
+  --color-typography-tertiary: #C180D1;
   --color-background-primary: #FEF1F0;
   --color-background-secondary: #e9e3e3;
   --color-background-therdiary: #FEF9FF;
   --color-background-fourthiary: #D9D9D9;
   --font-sans: var(--font-open-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-open-sans);
 }
 
 @media (prefers-color-scheme: dark) {
