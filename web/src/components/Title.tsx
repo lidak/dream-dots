@@ -6,6 +6,8 @@ interface TitleProps {
 }
 
 export const Title = (props: TitleProps) => {
+  const additionalClasses = props.size === 1 ? 
+  "text-typography-tertiary text-3xl": "text-typography-primary text-xl"
 return (
-  <div className="text-3xl text-typography-tertiary font-sans">{props.children}</div>
+  <div className={`${additionalClasses} font-sans`}>{props.children}</div>
 )}
