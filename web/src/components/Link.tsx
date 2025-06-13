@@ -8,7 +8,7 @@ interface LinkProps {
 
 export const Link = (props: LinkProps) => {
   return (
-  <NextLink href={props.href} className="font-bold text-lg text-typography-tertiary underline">
+  <NextLink href={props.href} className="font-bold text-md text-typography-tertiary underline">
     {props.children}
   </NextLink>)
 }
