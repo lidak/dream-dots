@@ -1,14 +1,12 @@
 import { PageLayout } from "@/components/PageLayout";
 import { Product, useGetProducts } from "./useGetProducts";
 
-interface ProductListPageProps {
-  clasName?: string;
-}
 
-export default function ProductListPage (props: ProductListPageProps) {
+
+export default function ProductListPage () {
   const products = useGetProducts();
   return (
-    <PageLayout className={`${props.clasName}`}>
+    <PageLayout>
         <>
         {!products.length && <div>No products are currently available!</div>}
         {products.length && (
