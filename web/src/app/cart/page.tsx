@@ -9,7 +9,7 @@ export default function Home() {
         <div className="text-xl text-typography-tertiary pb-10">Your cart is empty</div>
         <Image src="/empty-cart.svg" alt="sad empty cart" height={250} width={250} className="justify-self-center"/>
         <div className="pt-10">
-          <Link href="/">
+          <Link href="/plp">
             Go to gallery
           </Link>
           <span> to get yourself something fun!</span>

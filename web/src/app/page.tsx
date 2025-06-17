@@ -20,10 +20,10 @@ export default function Home() {
             />
             <div>
               <div className="pb-7">
-                <Link href="/cart">Explore unique creations</Link><span> made with love and creativity.</span>
+                <Link href="/plp">Explore unique creations</Link><span> made with love and creativity.</span>
               </div>
               <div>
-                <span> Have a question? </span><Link href="/">Contact us</Link><span> and we'll respond soon</span>
+                <span> Have a question? </span><Link href="/">Contact us</Link><span> and we&lsquo;ll respond soon</span>
               </div>
             </div>
           </div>
