@@ -5,6 +5,7 @@ export interface Product {
   price: number;
   currentlyInStock: number;
   backorderAvailable: boolean;
+  imgUrl?: string;
 }
 
 export const useGetProducts: () => Product[] = () => {
