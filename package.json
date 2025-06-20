@@ -6,7 +6,9 @@
     "test": "echo \"no test specified\"",
     "clean": "rm -rf ./node_modules ./infrastructure/node_modules",
     "dev:web": "npm --workspace web run dev",
-    "deploy:web": "npm --workspace web run build && npm --workspace infrastructure run synth && npm --workspace infrastructure run deploy"
+    "deploy:web": "npm --workspace web run build && npm --workspace infrastructure run synth && npm --workspace infrastructure run deploy",
+    "build:server": "npm --workspace server run build",
+    "deploy:server": "npm --workspace infrastructure run deploy"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,8 @@
   "description": "",
   "workspaces": [
     "web",
-    "infrastructure"
+    "infrastructure",
+    "server"
   ],
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.8",
