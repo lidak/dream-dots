@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -22,7 +23,7 @@ export default function RootLayout({
       <body
         className={`${openSans} antialiased`}
       >
-        {children}
+        <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
   );

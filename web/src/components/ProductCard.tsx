@@ -1,5 +1,5 @@
 "use client";
-import { Product } from "@/app/plp/useGetProducts";
+import { Product } from "@/api/useGetProducts";
 import { Button } from "./Button";
 
 interface ProductCardProps {
