@@ -1,6 +1,7 @@
 "use client";
 import { Product } from "@/api/useGetProducts";
 import { Button } from "./Button";
+import { useCartStore } from "@/store/cartStore";
 
 interface ProductCardProps {
   product: Product
@@ -10,7 +11,10 @@ export function ProductCard(props: ProductCardProps) {
   const {
     product
   } = props;
-  const buttonHandler = () => { }
+  const { addProduct } = useCartStore();
+  const buttonHandler = (id: string ) => {
+    addProduct(id);
+  }
 
   return <div key={product.id} className="shadow-sm p-6 bg-white">
     <div>
@@ -19,10 +23,8 @@ export function ProductCard(props: ProductCardProps) {
     <div className="font-bold py-3">{product.name}</div>
     <div>{product.description}</div>
     <div className="font-bold py-3">${product.price}</div>
-    <Button variant="primary" disabled={!product.currentlyInStock} onClick={buttonHandler} className={!(product.currentlyInStock || product.backorderAvailable) ? 'disabled' : ''}>
+    <Button variant="primary" disabled={!product.currentlyInStock} onClick={() => buttonHandler(product.id)} className={!(product.currentlyInStock || product.backorderAvailable) ? 'disabled' : ''}>
       add to cart
     </Button>
   </div>;
 }
-
-
