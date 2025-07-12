@@ -11,10 +11,12 @@ interface ButtonProps {
 }
 
 export const Button = (props: ButtonProps) => {
-  const backgroundColorClassName = props.variant === 'primary' ? 'bg-black': 'bg-background-primary';
-  const textColorClassName = props.variant === 'primary' ? 'text-white ': 'text-gray-500';
-  const className = `rounded-sm py-2 w-[100%] ${backgroundColorClassName} ${textColorClassName} cursor-pointer ` + 
-    `${props.className} ${props.disabled && 'backdrop-opacity-20'}`;
+  const secondaryBackgroundClass = props.disabled ? 'bg-gray-400' : 'bg-black'
+  const backgroundColorClassName = props.variant === 'primary' ? 'bg-background-primary' : secondaryBackgroundClass;
+  const textColorClassName = props.variant === 'primary' ? 'text-gray-500' : 'text-white ';
+  const cursorClass = props.disabled ? 'cursor-not-allowed' : 'cursor-pointer';
+  const className = `rounded-sm py-2 w-[100%] ${backgroundColorClassName} ${textColorClassName} ${cursorClass} ` + 
+    `${props.className}`;
   
   return <button disabled={props.disabled} className={className} onClick={props.onClick}>{props.children}</button>;
 }

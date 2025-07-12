@@ -42,3 +42,8 @@ export const useCartStore = create<CartState>()(
     })
   )
 );
+
+export const useGetProductsNumber = () => {
+  const products = useCartStore((state) => state.products);
+  return Object.keys(products).reduce((acc, key) => acc + products[key], 0);
+}

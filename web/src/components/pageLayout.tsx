@@ -1,7 +1,7 @@
 import { Header } from "./Header"
 
 interface PageLayoutProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
   className?: string;
 }
 

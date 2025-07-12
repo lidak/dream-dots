@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from '@/store/cartStore';
+import { useGetProductsNumber } from '@/store/cartStore';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -9,8 +9,7 @@ interface CartIconProps {
 }
 
 export const CartIcon = (props: CartIconProps) => {
-  const products = useCartStore((state) => state.products);
-  const number = Object.keys(products).reduce((acc, key) => acc + products[key], 0);
+  const number = useGetProductsNumber();
 
   return (
     <Link href="cart">
