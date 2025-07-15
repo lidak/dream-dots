@@ -1,5 +1,9 @@
 {
   "acknowledged-issue-numbers": [
     32775
-  ]
+  ],
+  "hosted-zone:account=863518441130:domainName=dream-dots.com:region=us-east-1": {
+    "Id": "/hostedzone/Z028703122GHF7B8UI8JM",
+    "Name": "dream-dots.com."
+  }
 }
