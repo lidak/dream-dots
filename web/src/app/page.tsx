@@ -8,7 +8,7 @@ export default function Home() {
     <PageLayout>
       <div className="grid grid-rows-[1fr_20px] items-start justify-items-top min-h-screen p-8 pb-2 gap-16 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[10px]">
-          <Title size={1}>Wellcome to Creative Sprout.</Title>
+          <Title size={1}>Wellcome to Dream Dots.</Title>
           <Title size={2}>Here imagination takes shape through handmade stickers and artwork.</Title>
           <div className="flex flex-row">
             <Image
