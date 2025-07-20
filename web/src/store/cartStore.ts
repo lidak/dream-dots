@@ -1,9 +1,10 @@
+import { Product, useGetProducts } from "@/api/useGetProducts";
 import { create } from "zustand";
 import { StateCreator } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 
 type CartStoreState = {
-  products: {[id: string]: number;}
+  products: { [id: string]: number; }
 }
 
 type CartStoreActions = {
@@ -46,4 +47,22 @@ export const useCartStore = create<CartState>()(
 export const useGetProductsNumber = () => {
   const products = useCartStore((state) => state.products);
   return Object.keys(products).reduce((acc, key) => acc + products[key], 0);
+}
+
+export type CartProduct = Product & { count: number; }
+
+export const useGetCartProducts = (): CartProduct[] => {
+  const { data: allProducts } = useGetProducts();
+  const addedProductsCount = useCartStore((state) => state.products);
+
+  return Object.keys(addedProductsCount)
+    .map((productId) => {
+      const product = allProducts?.find((product) => product.id === productId);
+      if (!product) return null;
+      return {
+        ...product,
+        count: addedProductsCount[productId]
+      }
+    })
+    .filter((product) => product !== null);
 }
