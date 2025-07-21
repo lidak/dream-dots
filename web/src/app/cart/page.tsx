@@ -9,9 +9,14 @@ import { useGetProductsNumber, useGetCartProducts } from "@/store/cartStore";
 import { useRouter } from "next/navigation";
 import { CartProductListItem } from "@/components/CartProductListItem";
 import { Spinner } from "@/components/Spinner";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 export default function CartPage() {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const { isLoading: isProductsLoading } = useGetProducts();
   const productsNumber = useGetProductsNumber();
@@ -26,14 +31,14 @@ export default function CartPage() {
   return (
     <PageLayout className="flex flex-col justify-start items-center">
       {
-        isProductsLoading && (
+        (isProductsLoading || !isMounted) && (
         <div className="flex items-center justify-center min-h-[calc(100vh-137px)] self-center w-full">   
           <Spinner />
         </div>
         )
       }
       {
-        !isProductsLoading && !productsNumber && (
+        isMounted && !isProductsLoading && !productsNumber && (
         <div className="flex items-center justify-center min-h-[calc(100vh-137px)] self-center w-full">   
           <div className="align-middle justify-center flex-col text-center">
             <div className="text-xl text-typography-tertiary pb-10">
@@ -54,18 +59,18 @@ export default function CartPage() {
         </div>)
       }
 
-      {!!productsNumber && !isProductsLoading && (
+      {isMounted && !!productsNumber && !isProductsLoading && (
         <div className="w-full">
           {products?.map((product) => (
             <CartProductListItem key={product.id} product={product} />
           ))}
           <div className="flex items-end gap-4 m-4 self-end cart-total-container">
             Total 
-            ${Math.round(total * 100) / 100}
+            ${(Math.round(total * 100) / 100).toFixed(2)}
           </div>
         </div>
       )}
-      {!isProductsLoading && (
+      {isMounted && !isProductsLoading && (
         <div className="flex items-end gap-4 m-4 self-end">
           <Button
             variant="secondary"

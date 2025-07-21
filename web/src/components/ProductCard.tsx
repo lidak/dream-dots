@@ -25,7 +25,7 @@ export function ProductCard(props: ProductCardProps) {
     </div>
     <div className="font-bold py-3">{product.name}</div>
     <div>{product.description}</div>
-    <div className="font-bold py-3">${product.price}</div>
+    <div className="font-bold py-3">${product.price.toFixed(2)}</div>
     <Button variant={buttonVariant} disabled={!product.currentlyInStock} onClick={() => buttonHandler(product.id)} className={!(product.currentlyInStock || product.backorderAvailable) ? 'disabled' : ''}>
       {buttonText}
     </Button>

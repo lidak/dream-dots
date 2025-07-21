@@ -27,7 +27,7 @@ export const CartProductListItem = ({product}: {product: CartProduct}) => {
         </Button>
       </div>
       <div className="cart-product-price-container">{
-        product.price
+        product.price.toFixed(2)
       }</div>
     </div>
   )
