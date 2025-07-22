@@ -60,7 +60,7 @@ export default function CartPage() {
       }
 
       {isMounted && !!productsNumber && !isProductsLoading && (
-        <div className="w-full">
+        <div className="w-full p-8">
           {products?.map((product) => (
             <CartProductListItem key={product.id} product={product} />
           ))}
