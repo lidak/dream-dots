@@ -7,7 +7,7 @@ export const CartProductListItem = ({product}: {product: CartProduct}) => {
   const reduceCount = (productId: string) => {removeProduct(productId)}
   const increaseCount = (productId: string) => {addProduct(productId)}
   return (
-    <div className="flex flex-row p-6 shadow-sm bg-white items-center justify-between">
+    <div className="flex flex-row p-6 shadow-sm bg-white items-center justify-between mb-4">
       <div className="cart-product-image-container">
         <img src={product.imgUrl || '/product-picture.png'} alt="Product image" />
       </div>
@@ -18,15 +18,15 @@ export const CartProductListItem = ({product}: {product: CartProduct}) => {
         </p>
       </div>
       <div className="cart-product-counter-container flex">
-        <Button variant="tertiary" onClick={() => {reduceCount(product.id)}}>
+        <Button variant="thertiary" onClick={() => {reduceCount(product.id)}}>
           -
         </Button>
-        <input value={product.count} className="cart-product-counter w-8" disabled id={`cart-item-${product.id}`}/>
-        <Button variant="tertiary" onClick={() => {increaseCount(product.id)}}>
+        <input value={product.count} className="cart-product-counter w-8 text-center border-[var(--color-background-button-therdiary)] border-1 mx-2" disabled id={`cart-item-${product.id}`}/>
+        <Button variant="thertiary" onClick={() => {increaseCount(product.id)}}>
           +
         </Button>
       </div>
-      <div className="cart-product-price-container font-bold">${
+      <div className="cart-product-price-container font-bold ml-3">${
         product.price.toFixed(2)
       }</div>
     </div>

@@ -64,7 +64,7 @@ export default function CartPage() {
           {products?.map((product) => (
             <CartProductListItem key={product.id} product={product} />
           ))}
-          <div className="flex items-end gap-4 m-4 self-end cart-total-container">
+          <div className="flex items-end gap-4 m-4 self-end cart-total-container text-lg border-t-1 justify-end pt-8 mt-8 font-bold">
             Total 
             ${(Math.round(total * 100) / 100).toFixed(2)}
           </div>
