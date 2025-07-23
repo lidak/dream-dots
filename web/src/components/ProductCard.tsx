@@ -21,7 +21,7 @@ export function ProductCard(props: ProductCardProps) {
 
   return <div key={product.id} className="shadow-sm p-6 bg-white">
     <div>
-      <img src={product.imgUrl || '/product-picture.png'} alt="Product image" />
+      <img src={product.imgUrl || '/product-picture.png'} alt="Product image" className="w-full h-48 object-cover rounded-md mb-4" />
     </div>
     <div className="font-bold py-3">{product.name}</div>
     <div>{product.description}</div>
