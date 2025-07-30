@@ -1,17 +1,20 @@
+'use client';
+
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { payPal } from '../../../env.json';
+
+const paypalOptions = {
+    clientId: payPal.dev.clientId,
+};
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Little Artist's Art",
-  description: "The website is waiting for my content. And so are you.",
-};
 
 export default function RootLayout({
   children,
@@ -23,7 +26,9 @@ export default function RootLayout({
       <body
         className={`${openSans} antialiased`}
       >
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <PayPalScriptProvider options={paypalOptions}>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </PayPalScriptProvider>
       </body>
     </html>
   );
