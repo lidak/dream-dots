@@ -10,6 +10,7 @@ type CartStoreState = {
 type CartStoreActions = {
   addProduct: (productId: string) => void;
   removeProduct: (productId: string) => void;
+  clearCart: () => void;
 }
 
 type CartState = CartStoreState & CartStoreActions;
@@ -31,6 +32,7 @@ const cartStoreDefinition: StateCreator<CartState> = (set) => ({
     }
     return { products: newProducts };
   }),
+  clearCart: () => set({ products: {} })
 })
 
 export const useCartStore = create<CartState>()(
@@ -66,3 +68,10 @@ export const useGetCartProducts = (): CartProduct[] => {
     })
     .filter((product) => product !== null);
 }
+
+export const useGetCartTotal = (): number => {
+  const products = useGetCartProducts();
+  return products.reduce((acc, product) => {
+    return acc + product.price * product.count;
+  }, 0);
+};

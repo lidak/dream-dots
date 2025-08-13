@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Link } from "@/components/Link";
 import { Button } from "@/components/Button";
 import { useGetProducts } from "@/api/useGetProducts";
-import { useGetProductsNumber, useGetCartProducts } from "@/store/cartStore";
+import { useGetProductsNumber, useGetCartProducts, useGetCartTotal } from "@/store/cartStore";
 import { useRouter } from "next/navigation";
 import { CartProductListItem } from "@/components/CartProductListItem";
 import { Spinner } from "@/components/Spinner";
@@ -22,11 +22,7 @@ export default function CartPage() {
   const productsNumber = useGetProductsNumber();
   const router = useRouter();
   const products = useGetCartProducts();
-  const total = useMemo(() => {
-    return products.reduce((acc, product) => {
-      return acc + product.price * product.count;
-    }, 0  );
-  }, [products]);
+  const total = useGetCartTotal();
 
   return (
     <PageLayout className="flex flex-col justify-start items-center">
