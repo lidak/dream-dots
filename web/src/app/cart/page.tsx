@@ -9,7 +9,7 @@ import { useGetProductsNumber, useGetCartProducts, useGetCartTotal } from "@/sto
 import { useRouter } from "next/navigation";
 import { CartProductListItem } from "@/components/CartProductListItem";
 import { Spinner } from "@/components/Spinner";
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function CartPage() {
   const [isMounted, setIsMounted] = useState(false);

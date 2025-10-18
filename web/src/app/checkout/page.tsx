@@ -14,9 +14,7 @@ export default function ProductListPage () {
   const router = useRouter();
   
   const createOrder = (data: CreateOrderData, actions: CreateOrderActions) => {
-    // Here you would typically call your backend to create the order
-    // For this example, we'll create a simple order directly
-    console.log("Creating order for", total);
+    
     return actions.order.create({
       intent: "CAPTURE",
       purchase_units: [
