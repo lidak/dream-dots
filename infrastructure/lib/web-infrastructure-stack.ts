@@ -1,4 +1,4 @@
-import { CfnOutput, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import { CfnOutput, Duration, RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
 import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
@@ -33,22 +33,15 @@ export class WebInfrastructureStack extends Stack {
       validation: acm.CertificateValidation.fromDns(hostedZone),
     });
 
-    // Create a private S3 bucket to store the website's static assets.
     this.webBucket = new Bucket(this, 'WebHostingBucket', {
       autoDeleteObjects: true,
-      // Block all public access; content will be served only by CloudFront.
       blockPublicAccess: BlockPublicAccess.BLOCK_ALL,
-      // The default, BUCKET_OWNER_ENFORCED, is recommended for new buckets.
-      // It disables ACLs and ensures the bucket owner owns all objects.
       objectOwnership: ObjectOwnership.BUCKET_OWNER_ENFORCED,
       removalPolicy: RemovalPolicy.DESTROY
     });
 
-    // Create a CloudFront distribution to serve the website.
     this.cloudFrontDistribution = new cloudfront.Distribution(this, 'WebHostingDistribution', {
-      // Use the certificate we created for our custom domain.
       certificate: certificate,
-      // Associate our custom domain names.
       domainNames: [domainName, siteDomain],
       defaultBehavior: {
         // Use S3 as the origin, with an Origin Access Control to keep it private.
@@ -56,22 +49,19 @@ export class WebInfrastructureStack extends Stack {
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
         compress: true,
+        functionAssociations: [
+          {
+            function: new cloudfront.Function(this, 'ViewerRequestFunction', {
+              code: cloudfront.FunctionCode.fromFile({
+                filePath: 'lib/viewer-request-function.js',
+              }),
+            }),
+            eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+          },
+        ],
       },
       // Serve index.html for root requests.
       defaultRootObject: 'index.html',
-      // Redirect 404s to index.html for Single Page Application (SPA) routing.
-      errorResponses: [
-        {
-          httpStatus: 403,
-          responseHttpStatus: 200,
-          responsePagePath: '/index.html',
-        },
-        {
-          httpStatus: 404,
-          responseHttpStatus: 200,
-          responsePagePath: '/index.html',
-        },
-      ],
     });
 
     // Create Route 53 A records to point the domain to the CloudFront distribution.

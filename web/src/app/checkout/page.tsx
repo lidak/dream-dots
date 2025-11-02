@@ -14,13 +14,13 @@ export default function ProductListPage () {
   const router = useRouter();
   
   const createOrder = (data: CreateOrderData, actions: CreateOrderActions) => {
-    
     return actions.order.create({
       intent: "CAPTURE",
       purchase_units: [
         {
           amount: {
             value: total.toFixed(2),
+            //value: "0.01",
             currency_code: "USD",
             breakdown: {
               item_total: {
@@ -48,6 +48,8 @@ export default function ProductListPage () {
   };
 
   const onApprove = (data: OnApproveData, actions: OnApproveActions) => {
+    console.log(actions);
+    console.log('on approve', data)
     // Call your backend to capture the order.
     // This is more secure and allows you to save the order details to your database.
     return fetch(`/api/orders/${data.orderID}/capture`, {
@@ -71,13 +73,14 @@ export default function ProductListPage () {
       router.push('/checkout/success');
     }).catch(error => {
       console.error("Error capturing order:", error);
-      router.push('/checkout/error');
+      //router.push('/checkout/error');
     });
   };
 
-  const onError = (err: any) => {
+  const onError = (err: Error) => {
+    debugger;
     console.error("An error occurred with the PayPal button:", err);
-    router.push('/checkout/error');
+    //router.push('/checkout/error');
   }
 
   return (
